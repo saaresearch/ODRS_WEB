@@ -1,0 +1,19 @@
+GPU: true
+accuracy: 10
+classes_path: C:\Users\prodb\PycharmProjects\django_autotrain\autotrain_web\media\classes\Aerial\classes_aer.txt
+dataset_path: C:\Users\prodb\PycharmProjects\django_autotrain\autotrain_web\media\files\Aerial
+models_array:
+- yolov5l
+- yolov5m
+- yolov5n
+- yolov5s
+- yolov5x
+- yolov7x
+- yolov7
+- yolov7-tiny
+- yolov8x6
+- yolov8x
+- yolov8s
+- yolov8n
+- yolov8m
+speed: 1

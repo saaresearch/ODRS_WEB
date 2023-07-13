@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Upload{% endblock title %}
+{% block content %}
+<h1>Upload files</h1>
+<div class="form-container">
+    <div class="preloaded" >
+        <div class="preloaded-head" >
+            <h2>
+                Pre-arranged folders
+            </h2>
+            <p>
+                Organize your images in folders named according to their corresponding classes (for instance "dog" or "cat").
+                <br /> Then, upload the parent folder using the input below.
+            </p>
+        </div>
+        <div class="preloaded-header" >
+            <svg width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32" class="mr-2 text-gray-500 flex-none"><path fill="currentColor" d="m11.17 6l3.42 3.41l.58.59H28v16H4V6h7.17m0-2H4a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2H16l-3.41-3.41A2 2 0 0 0 11.17 4Z"></path></svg>
+            <p style="margin-left: 10px">files /</p>
+        </div>
+        <div class="preloaded-folder">
+            <div class="preloaded-images-main">
+                <div class="preloaded-images-header" >
+                    <svg width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32" class="mr-2 text-gray-500 flex-none"><path fill="currentColor" d="m11.17 6l3.42 3.41l.58.59H28v16H4V6h7.17m0-2H4a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2H16l-3.41-3.41A2 2 0 0 0 11.17 4Z"></path></svg>
+                    <p style="margin-left: 10px">images /</p>
+                </div>
+                <div class="preloaded-images" >
+                    <div class="folder-path-line" >
+
+                    </div>
+                    <div class="preloaded-obj">
+                        <img width="100px" height="100px" src="{% static 'img/dog_1.jpg' %}">
+                        <p class="image-label">
+                            dog_1.jpg
+                        </p>
+                    </div>
+                    <div class="preloaded-obj">
+                        <img width="100px" height="100px" src="{% static 'img/dog_2.jpg' %}">
+                        <p class="image-label">
+                            dog_2.jpg
+                        </p>
+                    </div>
+                    <div class="preloaded-obj">
+                        <img width="100px" height="100px" src="{% static 'img/dog_3.jpg' %}">
+                        <p class="image-label">
+                            dog_3.jpg
+                        </p>
+                    </div><div class="preloaded-obj">
+                    <img width="100px" height="100px" src="{% static 'img/dog_4.jpg' %}">
+                    <p class="image-label">
+                        dog_4.jpg
+                    </p>
+                </div><div class="preloaded-obj">
+                    <img width="100px" height="100px" src="{% static 'img/dog_5.jpg' %}">
+                    <p class="image-label">
+                        dog_5.jpg
+                    </p>
+                </div>
+                    <div class="blur"></div>
+                </div>
+
+            </div>
+            <div class="preloaded-labels-main">
+                <div class="preloaded-images-header" >
+                    <svg width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32" class="mr-2 text-gray-500 flex-none"><path fill="currentColor" d="m11.17 6l3.42 3.41l.58.59H28v16H4V6h7.17m0-2H4a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2H16l-3.41-3.41A2 2 0 0 0 11.17 4Z"></path></svg>
+                    <p style="margin-left: 10px">labels /</p>
+
+                </div>
+                <div class="preloaded-labels">
+                    <div class="folder-path-line" >
+                    </div>
+                    <div class="preloaded-obj">
+                        <img width="100px" height="100px" src="{% static 'img/txt.png' %}"><p class="image-label">
+                        dog_1.txt
+                    </p>
+                    </div>
+                    <div class="preloaded-obj">
+                        <img width="100px" height="100px" src="{% static 'img/txt.png' %}"><p class="image-label">
+                        dog_2.txt
+                    </p>
+                    </div>
+                    <div class="preloaded-obj">
+                        <img width="100px" height="100px" src="{% static 'img/txt.png' %}"><p class="image-label">
+                        dog_3.txt
+                    </p>
+                    </div>
+                    <div class="preloaded-obj">
+                        <img width="100px" height="100px" src="{% static 'img/txt.png' %}"><p class="image-label">
+                        dog_4.txt
+                    </p>
+                    </div>
+                    <div class="preloaded-obj">
+                        <img width="100px" height="100px" src="{% static 'img/txt.png' %}"> <p class="image-label">
+                        dog_5.txt
+                    </p>
+                    </div>
+                    <div class="blur"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form id="upload-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="folder-container">
+            <div class="loader" id="loader"></div>
+            <label for="folder-input" class="folder-label">
+                <span class="folder-text" id="launch-files-text">Upload files</span>
+
+                <input id="folder-input" type="file" name="folder" webkitdirectory mozdirectory directory multiple />
+            </label>
+        </div>
+        <button type="submit" class="launch">Upload</button>
+    </form>
+</div>
+<script src="{% static 'js/upload_files.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,592 @@
+@font-face {
+    font-family: 'Alef';
+    src: url("/static/fonts/Alef-Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url("/static/fonts/Ubuntu-Regular.woff") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #373737;
+    color: #FFFFFF;
+    font-family: Ubuntu;
+    margin: 0;
+}
+
+h1 {
+
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+h2 {
+
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+main {
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 20px;
+    text-align: -webkit-center;
+}
+
+/* Верхнее меню начало */
+header {
+    background-color: #474747;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Выпадающий список меню начало*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    background: none;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    margin-right: 10px;
+    border-radius: 27px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-btn:after,  {
+    margin-left: 15px;
+    margin-bottom: 4px;
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-left: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    transform: rotate(-45deg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    background: linear-gradient(197.95deg, #4D4D4D 4.37%, #373737 103.8%);
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.14), inset 3px 4px 4px rgba(214, 214, 214, 0.03);
+    border-radius: 18px;
+}
+
+.dropdown-content a {
+    color: #FFFFFF;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 27px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropdown-btn, .menu li a:hover {
+    background: #51AB32;
+
+}
+
+.dropdown-content a.selected, .dropdown-content a:hover {
+    background-color: #d9d9d957;
+
+}
+/* Выпадающий список меню конец */
+nav {
+    background-color: #474747;
+    padding: 10px 0;
+}
+
+.menu {
+    list-style: none;
+    text-align: center;
+}
+
+.menu li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.menu li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 27px;
+}
+/* Верхнее меню конец */
+
+.form-container {
+    text-align: center;
+    margin-bottom: 20px;
+    width: max-content;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+textarea {
+    padding: 8px 16px;
+    font-size: 16px;
+    background: #2E2E2E;
+    box-shadow: 0px 3px 4px rgba(75, 75, 75, 0.25), inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 13px;
+    border: none;
+    color: #FFFFFF;
+    margin-top: 20px;
+    min-width: 50%;
+}
+input[type="text"]:focus{
+    background: #4F4D4D;
+    outline: none;
+}
+button[type="submit"], a.next {
+    background: #51AB32;
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.14), inset 3px 4px 4px rgba(214, 214, 214, 0.03);
+    border-radius: 27px;
+    padding: 8px 16px;
+    border: none;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+button[type="submit"]:hover, a.next:hover  {
+    background: #007521;
+}
+
+button.delete-button {
+    margin-top: 10px;
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 13px;
+}
+
+button.delete-button:hover {
+    background: #51AB32;
+}
+
+.project-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.project-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 160px;
+    border-radius: 5px;
+    border: 1px dashed #ccc;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.project-item:hover {
+    background-color: #444444;
+}
+
+.project-item-inner {
+    text-align: center;
+}
+
+.create-project {
+    background: #2E2E2E;
+    box-shadow: 0px 3px 4px rgba(75, 75, 75, 0.25), inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 13px;
+    border: none;
+}
+
+
+.project-item h2 {
+    margin: 0;
+}
+
+button.delete-button {
+    margin-top: 10px;
+    background: none;
+}
+
+.folder-container {
+    height: 200px;
+    border: 1px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.folder-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 1;
+}
+
+span.folder-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#folder-input {
+    position: relative;
+    opacity: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.info-block {
+    margin-bottom: 20px;
+    padding: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-bottom: 1px solid #424242;
+}
+
+
+.top-models {
+    margin-top: 20px;
+    background-color: #333;
+    color: #ffc107;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.top-models h2 {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.top-models ul {
+    list-style: none;
+    padding: 0;
+}
+
+.top-models li {
+    margin-bottom: 5px;
+    font-style: italic;
+    color: #999;
+}
+a.models-link {
+    text-decoration: none;
+    color: #8AB4F8;
+}
+li.models-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+div.models-info {
+    border-top: 1px solid #424242;
+    border-bottom: 1px solid #424242;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+div.model-container {
+    background: linear-gradient(197.95deg, #4D4D4D 4.37%, #373737 103.8%);
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.14), inset 3px 4px 4px rgba(214, 214, 214, 0.03);
+    border-radius: 13px;
+    padding: 10px;
+    color: white;
+
+    padding-left: 40px;
+    padding-right: 40px;
+    min-width: 30%;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.form-container {
+    max-width: 50%;
+    padding: 20px;
+    background: linear-gradient(197.95deg, #4D4D4D 4.37%, #373737 103.8%);
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.14), inset 3px 4px 4px rgba(214, 214, 214, 0.03);
+    border-radius: 13px;
+}
+
+.select-folder {
+    margin-bottom: 20px;
+}
+
+
+
+/* Стили для страницы настроек конфигураций */
+
+div.input-fields {
+    display: flex;
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    margin-top: 20px;
+    justify-content: space-between;
+    min-height: 50px;
+    align-items: center;
+}
+label {
+    margin-right: 10px;
+}
+
+
+.config-form input[type="number"] {
+    width: 50%;
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    background: #2E2E2E;
+    color: #FFFFFF;
+    box-shadow: 0px 3px 4px rgba(75, 75, 75, 0.25), inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 13px;
+}
+
+.config-form select:focus,
+.config-form input[type="number"]:focus {
+    background: #4F4D4D;
+    outline: none;
+}
+.config-form select {
+    width: 50%;
+    min-width: 50%;
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+
+    color: #FFFFFF;
+    background: linear-gradient(197.95deg, #4D4D4D 4.37%, #373737 103.8%);
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.14), inset 3px 4px 4px rgba(214, 214, 214, 0.03);
+    border-radius: 27px;
+
+}
+.config-form select option {
+    background: linear-gradient(197.95deg, #4D4D4D 4.37%, #373737 103.8%);
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.14), inset 3px 4px 4px rgba(214, 214, 214, 0.03);
+    border-radius: 18px;
+
+}
+
+
+/* Кнопка вставить файл */
+.input-file {
+    display: flex;
+
+    justify-content: space-between;
+}
+.input-file-btn {
+    padding: 8px 16px;
+    border: none;
+    color: #FFFFFF;
+    background: #51AB32;
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.14), inset 3px 4px 4px rgba(214, 214, 214, 0.03);
+    border-radius: 27px;
+}
+.input-file-text {
+	padding: 0 10px;
+	line-height: 20px;
+	display: inline-block;
+}
+.input-file input[type=file] {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0;
+	height: 0;
+}
+
+/* Hover/active */
+.input-file:hover .input-file-btn {
+	background-color: #007521;
+}
+
+div.file-fields {
+    display: grid;
+}
+
+input[type=checkbox] {
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 32px;
+}
+input[type=checkbox]:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background-color:#e9e9e9;
+}
+input[type=checkbox]:checked:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background-color:#51AB32;
+}
+input[type=checkbox]:checked:after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 6px;
+}
+
+button.launch {
+    margin-top: 20px;
+}
+/* Стили для преподготовки файлов  */
+div.preloaded, div.popup {
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #2e2e2e70;
+    box-shadow: 0px 3px 4px rgba(75, 75, 75, 0.25), inset 0px 3px 6px rgba(0, 0, 0, -0.75);
+    border-radius: 13px;
+}
+
+div.preloaded-header {
+    display: flex;
+    border: 1px #424242 solid;
+    border-radius: 13px;
+    padding-left: 20px;
+    align-items: center;
+}
+
+div.preloaded-folder {
+    border: 1px #424242 solid;
+    padding-left: 40px;
+    border-radius: 13px;
+    overflow: hidden;
+
+}
+
+div.preloaded-images-header {
+    display: flex;
+    align-items: center;
+}
+
+div.folder-path-line {
+    height: 75px;
+    margin-right: 10px;
+    min-width: 50px;
+    border-left: 1px #424242 solid;
+    border-bottom: 1px #424242 solid;
+}
+.preloaded-obj {
+  position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+p.image-label {
+ position: absolute;
+    top: 45%;
+    left: 0%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    width: 100px;
+}
+
+div.preloaded-labels, div.preloaded-images {
+    display: flex;
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+/* Стили для информации о полях */
+div.field-name {
+    display: flex;
+}
+
+div.popup {
+    position: absolute;
+    padding: 10px;
+    margin-bottom: 20px;
+    background: #2e2e2e;
+    box-shadow: 0px 3px 4px rgba(75, 75, 75, 0.25), inset 0px 3px 6px rgba(0, 0, 0, -0.75);
+    border-radius: 13px;
+    z-index: 10;
+    max-width: 25%;
+    margin-top: 120px;
+}
+svg.icons {
+    cursor: pointer;
+}
+/* Стили для иконки загрузки */
+.loader {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #51AB32;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+div.loader-field {
+    margin-top: 50px;
+}

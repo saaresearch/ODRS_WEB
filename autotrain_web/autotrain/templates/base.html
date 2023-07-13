@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Default title{% endblock title %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+<header>
+    <div class="project-selection">
+        <script src="{% static 'js/base.js' %}"></script>
+
+        <div id="project-select">
+            <div class="dropdown">
+                <button class="dropdown-btn" type="button"> {% if project.id %}
+                    {{ project.name }}
+                    {% else %}
+                    Choose
+                    {% endif %}</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'projects' %}" {% if not project.id %}class="selected"{% endif %}>All projects</a>
+                    <a href="{% url 'create_project' %}">Create new project</a>
+                    {% for p in projects %}
+                    <a href="{% url 'show_files' %}?project_id={{ p.id }}" {% if project.id == p.id %}class="selected"{% endif %}>{{ p.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <ul class="menu">
+            <li><a href="{% url 'projects' %}">All projects</a></li>
+            <li><a href="{% url 'create_project' %}">Create new project</a></li>
+            <li><a href="{% url 'upload_files' %}">Upload files</a></li>
+            <li><a href="{% url 'show_files' %}">Settings</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+</body>
+</html>

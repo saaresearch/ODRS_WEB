@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Results{% endblock title %}
+{% load static %}
+{% block content %}
+<h1>Training results</h1>
+<div class="project-container">
+    <div class="model-container">
+        <h2>Top Models</h2>
+        <ul>
+            {% for model, key in result.1.items %}
+            <li class="models-name" style="list-style-type: decimal;">{{ key.name }}</li>
+            <div class="models-info">
+                {% for stat_name, stat_desc in key.stats.items %}
+                {% if stat_desc.items %}
+                {% for add_name, add_desc in stat_desc.items %}
+                <p>{{ add_name }}: <a class="models-link" href="{{ add_desc }}">{{ add_desc }}</a></p>
+                {% endfor %}
+                {% else %}
+                <p>{{ stat_name }}:<a  class="models-link"  href="{{ stat_desc }}"> {{ stat_desc }}</a></p>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="model-container">
+        <div class="info-block">
+            <h2>Image Count</h2>
+            <p class="value">{{ result.0.4 }}</p>
+        </div>
+
+        <div class="info-block">
+            <h2>W:</h2>
+            <p class="value">{{ result.0.0 }}</p>
+        </div>
+
+        <div class="info-block">
+            <h2>H:</h2>
+            <p class="value">{{ result.0.1 }}</p>
+        </div>
+
+        <div class="info-block">
+            <h2>Gini coefficient</h2>
+            <p class="value">{{ result.0.2 }}</p>
+        </div>
+
+        <div class="info-block">
+            <h2>Class count</h2>
+            <p class="value">{{ result.0.3 }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

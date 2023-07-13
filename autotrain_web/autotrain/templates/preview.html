@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Preview{% endblock title %}
+{% block content %}
+{% load custom_filters %}
+<div class="form-container">
+    <div class="preloaded">
+        {% for folder, folder_data in folder_dict.items %}
+        <div class="preloaded-images-main">
+            <div class="preloaded-images-header">
+                <svg width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32" class="mr-2 text-gray-500 flex-none"><path fill="currentColor" d="m11.17 6l3.42 3.41l.58.59H28v16H4V6h7.17m0-2H4a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2H16l-3.41-3.41A2 2 0 0 0 11.17 4Z"></path></svg>
+                <p style="margin-left: 10px">{{ folder }}</p>  <!-- Название главной папки -->
+            </div>
+            {% if folder_data.files %}
+            {% if folder_data.files.0 %}
+            <div class="preloaded-images" >
+                <div class="folder-path-line" >
+                </div>
+                {% for file in folder_data.files %}
+                <div class="preloaded-obj">
+                    {% if file|slice:"-4:" == '.jpg' or file|slice:"-5:" == '.jpeg' or file|slice:"-4:" == '.png' or file|slice:"-4:" == '.gif' or file|slice:"-4:" == '.bmp' %}
+                    <img width="100px" height="100px" src="/media/{{file}}">
+                    {% else %}
+                    <img width="100px" height="100px" src="{% static 'img/txt.png' %}">
+                    {% endif %}
+                    <p class="image-label">
+                        ...{{ file|slice:"-8:"  }}</p>  <!-- Название файла -->
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+            <!-- Рекурсивный вызов для вложенных папок -->
+            {% if folder_data.folders %}
+                {% include 'preview_sub.html' with folder_dict=folder_data.folders %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+</div>
+<a href="{% url 'show_files' %}" class="next">Next</a>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Projects{% endblock title %}
+{% load static %}
+{% block content %}
+<h1>All projects</h1>
+<div class="project-container">
+  <a href="{% url 'create_project' %}" class="project-item create-project">
+    <div class="card-btn__content card-btn__top-block-content">
+      <div class="app-table-grid__btn-content">
+        <div class="svg-container">
+          <svg width="200" height="108" viewBox="0 0 200 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="98.5078" y="77.91" width="56.8522" height="2.9581" transform="rotate(-90 98.5078 77.91)" fill="#51AB32"></rect>
+            <rect x="0.743164" y="27.6509" width="26.6687" height="2.9581" transform="rotate(-90 0.743164 27.6509)" fill="#797979"></rect>
+            <rect width="26.6687" height="2.9581" transform="matrix(0 -1 -1 0 199.232 27.6509)" fill="#797979"></rect>
+            <rect x="199.232" y="80.7367" width="26.6687" height="2.9581" transform="rotate(90 199.232 80.7367)" fill="#797979"></rect>
+            <rect width="26.6687" height="2.9581" transform="matrix(0 1 1 0 0.743164 80.7367)" fill="#797979"></rect>
+            <rect x="0.743164" y="0.982178" width="26.6687" height="2.9581" fill="#797979"></rect>
+            <rect width="26.6687" height="2.9581" transform="matrix(-1 0 0 1 199.232 0.982178)" fill="#797979"></rect>
+            <rect x="199.232" y="107.406" width="26.6687" height="2.9581" transform="rotate(-180 199.232 107.406)" fill="#797979"></rect>
+            <rect width="26.6687" height="2.9581" transform="matrix(1 0 0 -1 0.743164 107.406)" fill="#797979"></rect>
+            <rect x="71.5615" y="48.0049" width="56.8522" height="2.9581" fill="#51AB32"></rect>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </a>
+  {% for project in projects %}
+  <a href="{% url 'show_files' %}?project_id={{ project.id }}" class="project-item">
+    <div class="project-item-inner">
+      {{ project.name }}
+      <form action="{% url 'delete_project' %}?project_id={{ project.id }}" method="post" class="delete-form">
+        {% csrf_token %}
+        <button type="submit" onclick="loaderIcon()" class="delete-button">
+          <img class="but" src="{% static 'img/delete.png' %}" width="25px;">
+        </button>
+      </form>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+<div class="loader-field">
+  <div class="loader" id="loader"></div>
+</div>
+<script src="{% static 'js/loader.js' %}"></script>
+{% endblock %}

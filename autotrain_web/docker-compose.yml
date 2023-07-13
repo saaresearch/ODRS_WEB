@@ -1,0 +1,9 @@
+services:
+  autotrain:
+    container_name: autotrain
+    restart: always
+    build: ./
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app

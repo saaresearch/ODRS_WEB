@@ -1,0 +1,15 @@
+[submodule "ODRC/train_utils/train_model/models/ssd.pytorch"]
+	path = ODRC/train_utils/train_model/models/ssd.pytorch
+	url = https://github.com/amdegroot/ssd.pytorch.git
+[submodule "ODRC/train_utils/train_model/models/faster-rcnn.pytorch"]
+	path = ODRC/train_utils/train_model/models/faster-rcnn.pytorch
+	url = https://github.com/jwyang/faster-rcnn.pytorch.git
+[submodule "ODRC/train_utils/train_model/models/yolov7"]
+	path = ODRC/train_utils/train_model/models/yolov7
+	url = https://github.com/WongKinYiu/yolov7.git
+[submodule "ODRC/train_utils/train_model/models/yolov5"]
+	path = ODRC/train_utils/train_model/models/yolov5
+	url = https://github.com/ultralytics/yolov5.git
+[submodule "ODRC/train_utils/train_model/models/ultralytics"]
+	path = ODRC/train_utils/train_model/models/ultralytics
+	url = https://github.com/ultralytics/ultralytics.git

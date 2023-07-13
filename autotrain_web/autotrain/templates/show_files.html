@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Configurations{% endblock title %}
+{% block content %}
+<h1>Settings </h1>
+
+<div class="form-container">
+
+    <div class="select-folder">
+
+        <form method="post" action="{% url 'show_files' %}" class="config-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-fields">
+                <div id="dataset-path-popup" class="popup" style="display:none">
+                     Choose the path to the uploaded data (the specified directory should contain automatically created train, test, and val folders when the dataset is uploaded).
+                </div>
+                <div class="field-name">
+                    <label for="dataset-path-input">Dataset path</label>
+                    <svg class="icons" id="dataset-path-icon" width="13" height="13" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5135 33.5651C26.4389 33.5651 33.6745 26.3296 33.6745 17.4041C33.6745 8.47866 26.4389 1.24315 17.5135 1.24315C8.58804 1.24315 1.35253 8.47866 1.35253 17.4041C1.35253 26.3296 8.58804 33.5651 17.5135 33.5651ZM17.5135 34.8082C27.1255 34.8082 34.9176 27.0162 34.9176 17.4041C34.9176 7.79209 27.1255 0 17.5135 0C7.90146 0 0.109375 7.79209 0.109375 17.4041C0.109375 27.0162 7.90146 34.8082 17.5135 34.8082Z" fill="#ACACAC"></path>
+                        <path d="M18.3835 6.96167H16.6431V9.43571H18.3835V6.96167ZM18.3044 12.5769H16.7222V26.9764H18.3044V12.5769Z" fill="#ACACAC"></path>
+                    </svg>
+                </div>
+                <select name="folder_name"  id="dataset-path-input">
+                    {% for folder in folders %}
+                    <option value="{{ folder }}" {% if folder == selected_folder %}selected{% endif %}>{{ folder }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="input-fields">
+                <div id="classes-path-popup" class="popup" style="display:none">
+                     Upload the classes.txt file with class names.
+                </div>
+                <div class="field-name">
+                    <label> Classes path </label>
+                    <svg class="icons" id="classes-path-icon" width="13" height="13" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5135 33.5651C26.4389 33.5651 33.6745 26.3296 33.6745 17.4041C33.6745 8.47866 26.4389 1.24315 17.5135 1.24315C8.58804 1.24315 1.35253 8.47866 1.35253 17.4041C1.35253 26.3296 8.58804 33.5651 17.5135 33.5651ZM17.5135 34.8082C27.1255 34.8082 34.9176 27.0162 34.9176 17.4041C34.9176 7.79209 27.1255 0 17.5135 0C7.90146 0 0.109375 7.79209 0.109375 17.4041C0.109375 27.0162 7.90146 34.8082 17.5135 34.8082Z" fill="#ACACAC"></path>
+                        <path d="M18.3835 6.96167H16.6431V9.43571H18.3835V6.96167ZM18.3044 12.5769H16.7222V26.9764H18.3044V12.5769Z" fill="#ACACAC"></path>
+                    </svg>
+                </div>
+                <label class="input-file">
+
+                    <input type="file"  name="file" required>
+                    <div class="file-fields">
+                        <span class="input-file-btn">Choose file</span>
+                        <span class="input-file-text">Maximum 10mb</span>
+                    </div>
+                </label>
+
+            </div>
+            <div class="input-fields">
+                <div id="gpu-popup" class="popup" style="display:none">
+                     Select this option if you plan to use the model on graphics processing units.
+                </div>
+
+                <div class="field-name">
+                    <label for="gpu-input">
+                        GPU
+                    </label>
+                    <svg class="icons" id="gpu-icon" width="13" height="13" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5135 33.5651C26.4389 33.5651 33.6745 26.3296 33.6745 17.4041C33.6745 8.47866 26.4389 1.24315 17.5135 1.24315C8.58804 1.24315 1.35253 8.47866 1.35253 17.4041C1.35253 26.3296 8.58804 33.5651 17.5135 33.5651ZM17.5135 34.8082C27.1255 34.8082 34.9176 27.0162 34.9176 17.4041C34.9176 7.79209 27.1255 0 17.5135 0C7.90146 0 0.109375 7.79209 0.109375 17.4041C0.109375 27.0162 7.90146 34.8082 17.5135 34.8082Z" fill="#ACACAC"></path>
+                        <path d="M18.3835 6.96167H16.6431V9.43571H18.3835V6.96167ZM18.3044 12.5769H16.7222V26.9764H18.3044V12.5769Z" fill="#ACACAC"></path>
+                    </svg>
+                </div>
+                <input id="gpu-input" type="checkbox"  title="Описание поля GPU" name="GPU" {% if config.GPU %}checked{% endif %}>
+            </div>
+            <div class="input-fields">
+                <div id="speed-popup" class="popup" style="display:none">
+                    Specify the importance of model performance speed on a scale from 1 to 5.
+                </div>
+                <div class="field-name">
+                    <label for="speed-input">Speed</label>
+                    <svg class="icons" id="speed-icon" width="13" height="13" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5135 33.5651C26.4389 33.5651 33.6745 26.3296 33.6745 17.4041C33.6745 8.47866 26.4389 1.24315 17.5135 1.24315C8.58804 1.24315 1.35253 8.47866 1.35253 17.4041C1.35253 26.3296 8.58804 33.5651 17.5135 33.5651ZM17.5135 34.8082C27.1255 34.8082 34.9176 27.0162 34.9176 17.4041C34.9176 7.79209 27.1255 0 17.5135 0C7.90146 0 0.109375 7.79209 0.109375 17.4041C0.109375 27.0162 7.90146 34.8082 17.5135 34.8082Z" fill="#ACACAC"></path>
+                        <path d="M18.3835 6.96167H16.6431V9.43571H18.3835V6.96167ZM18.3044 12.5769H16.7222V26.9764H18.3044V12.5769Z" fill="#ACACAC"></path>
+                    </svg>
+                </div>
+                <input id="speed-input" type="number"  name="speed" min="1" max="5" value="{{ config.speed }}" required>
+            </div>
+            <div class="input-fields">
+                <div id="accuracy-popup" class="popup" style="display:none">
+                    Specify the importance of model prediction accuracy on a scale from 1 to 10.
+                </div>
+                <div class="field-name">
+                    <label for="accuracy-input">Accuracy</label>
+                    <svg class="icons" id="accuracy-icon" width="13" height="13" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5135 33.5651C26.4389 33.5651 33.6745 26.3296 33.6745 17.4041C33.6745 8.47866 26.4389 1.24315 17.5135 1.24315C8.58804 1.24315 1.35253 8.47866 1.35253 17.4041C1.35253 26.3296 8.58804 33.5651 17.5135 33.5651ZM17.5135 34.8082C27.1255 34.8082 34.9176 27.0162 34.9176 17.4041C34.9176 7.79209 27.1255 0 17.5135 0C7.90146 0 0.109375 7.79209 0.109375 17.4041C0.109375 27.0162 7.90146 34.8082 17.5135 34.8082Z" fill="#ACACAC"></path>
+                        <path d="M18.3835 6.96167H16.6431V9.43571H18.3835V6.96167ZM18.3044 12.5769H16.7222V26.9764H18.3044V12.5769Z" fill="#ACACAC"></path>
+                    </svg>
+                </div>
+                <input id="accuracy-input" type="number"  name="accuracy" min="1" max="10" value="{{ config.accuracy }}" required>
+            </div>
+            <button type="submit" class="launch" onclick="validateForm()" id="training-button">Training
+
+            </button>
+        </form>
+    </div>
+</div>
+<div class="loader" id="loader"></div>
+<script src="{% static 'js/show_files.js' %}"></script>
+{% endblock %}
+

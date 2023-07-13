@@ -1,0 +1,16 @@
+# Virtual environment
+venv/
+
+# Django generated files
+*.pyc
+*.pyo
+__pycache__/
+
+# Media files
+media/
+
+# Database
+*.sqlite3
+
+# Static files
+staticfiles/

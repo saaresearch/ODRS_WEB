@@ -1,0 +1,5 @@
+GPU: true
+accuracy: 9
+classes_path: "\u0443\u043D"
+dataset_path: "\u043A\u0443\u043D"
+speed: 5

@@ -1,0 +1,5 @@
+GPU: 'on'
+accuracy: '10'
+classes_path: classes
+dataset_path: C:\Users\prodb\PycharmProjects\django_autotrain\autotrain_web\media/files/classes
+speed: '1'
